@@ -1,0 +1,98 @@
+{% if section.blocks.size > 0 %} 
+<div class="page-width">
+  <div class="feature-top">
+    {% if section.settings.title != blank %}
+    <div class="section-header">
+      <h2>{{section.settings.title}}</h2>
+    </div>
+    {% endif %}
+    <ul class="collection-nav">
+      {% for block in section.blocks %}
+      {% if block.settings.collection != blank %}
+      <li>
+        <a href="javascript:void(0);" class="tab-a {% if forloop.index == 1 %}active{% endif %}" data-id="tab{{forloop.index}}">
+          <span class="collection-icon">
+            {{block.settings.svg_icon}}
+          </span>
+          {% if block.settings.title != blank %}
+          <span class="collection-name">{{block.settings.title}}</span>
+          {% endif %}
+        </a>
+      </li>
+      {% endif %}
+     {% endfor %}
+    </ul>
+  </div>
+  <div class="feature-product-wrap">
+     {% for block in section.blocks %}
+      {% if block.settings.collection != blank %}
+    {% assign collection_name = collections[block.settings.collection] %}
+    <div  class="tab {% if forloop.index == 1 %}tab-active{% endif %}" data-id="tab{{forloop.index}}">
+      <div class="feature-product-slider">
+      {% for product in collection_name.products limit: 10 %}
+       <div class="slide-item">
+         <img src="{{product.featured_image | img_url:'master'}}">
+       </div>
+      {% endfor %}
+        
+      </div>
+    </div>
+     {% endif %}
+   {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "home feature product",
+    "settings": [
+     {
+      "type":"text",
+       "id":"title",
+       "label":"Heading"
+     }
+
+   ],
+  "blocks":[
+   {
+      "type": "collection",
+        "name": "Home feature Collection",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Select collection"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Select collection"
+          },
+          {
+             "type":"html",
+             "id":"svg_icon",
+             "label":"Add Svg Code"
+          },
+          {
+             "type":"text",
+             "id":"title",
+             "label":"Name of Icon"
+          }
+     ]
+   }
+
+   ],
+	"presets": [
+    {
+      "name": "Home Feature Product",
+      "category": "collection"
+      
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
