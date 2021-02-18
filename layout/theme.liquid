@@ -203,11 +203,13 @@
     <div id="PageContainer" class="is-moved-by-drawer">
      {% section 'header' %}
     {{ template }}
-    {{ template }}
-{{'hello'}}
+   {{'run watch'}}
+   {{template}}
+   {{'run diff'}}
           <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
                {{ content_for_layout }}
           </main>
+
     {% section 'footer' %}
        <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
           {{- 'sections.slideshow.navigation_instructions' | t -}}
