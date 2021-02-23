@@ -81,7 +81,6 @@
       link.dispatchEvent(new Event('load'));
     }
   </script>
-
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
 
   <style>
@@ -203,8 +202,6 @@
     <div id="PageContainer" class="is-moved-by-drawer">
      {% section 'header' %}
     {{ template }}
-    {{ template }}
-{{'hello'}}
           <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
                {{ content_for_layout }}
           </main>
